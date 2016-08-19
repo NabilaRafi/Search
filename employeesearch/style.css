@@ -1,0 +1,20 @@
+        table, th, td 
+        {
+            margin:10px 0;
+            border:solid 1px #333;
+            padding:2px 4px;
+            font:15px Verdana; 
+            border-collapse :collapse;
+        }
+        th {
+            font-weight:bold;
+        }
+        
+        @media screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px), screen\9  {
+    #dataTable  tr > *:nth-child(2),#dataTable  tr > *:nth-child(3) {
+        display:none;
+    }
+
+}
+	

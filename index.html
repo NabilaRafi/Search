@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+    <head>
+    <title>Convert JSON Data to HTML Table Example</title>
+    <style>
+
+        table, th, td 
+        {
+            margin:10px 0;
+            border:solid 1px #333;
+            padding:2px 4px;
+            font:15px Verdana; 
+            border-collapse :collapse;
+        }
+        th {
+            font-weight:bold;
+        }
+        
+        @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+    
+    th{
+        display:none;
+    }
+    
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+    </style>
+</head>
+<body>
+    <header>Savings Account</header>
+    <input type="button" onclick="CreateTableFromJSON()" value="View the savings account" />
+    <div id="showData"></div>
+    <a href="javascript:prevPage()" id="prev_btn" >Prev</a>
+    <a href="javascript:nextPage()" id ="next_btn">Next</a>
+       
+    <script>
+    function CreateTableFromJSON() {
+        
+        var btn_prev = document.getElementById("prev_btn");
+        var btn_next = document.getElementById("next_btn");
+        
+        var AccountDetails = [
+            {
+                "Product": "Fixed Saver",
+                "Interest Type": "2.20%",
+                "Minimum Deposit": "500",
+                "Interest Rate": "Fixed"
+            },
+            {
+                "Product": "Flex Saver",
+                "Interest Type": "1.5%",
+                "Minimum Deposit": "0",
+                "Interest Rate": "Tracker"
+            },
+            {
+                "Product": "Offset Saver",
+                "Interest Type": "0.8%",
+                "Minimum Deposit": "1000",
+                "Interest Rate": "Fixed"
+            }
+        ]
+        
+        var col = [];
+        var key;/* currentPage = 1, recordsPerPage = 1;
+        var numOfPages = AccountDetails.length();
+        
+        function prevPage(){
+            if(currentPage > 1){
+                currentPage-- ;
+                changePage(currentPage);     
+            } 
+        }
+        
+        function nextPage(){
+            if(currentPage < numOfPages){
+                currentPage++;
+                changePage(currentPage);
+            }  
+            
+        }
+        
+        function changePage(page){
+            
+            var btn_prev = document.getElementById("prev_btn");
+            var btn_next = document.getElementById("next_btn");
+            var tableData = document.getElementById("showData")
+            
+            for(var i =(page-1); i< (page*recordsPerPage) ; i++){
+                tableData.innerHTML += objJson[i].adName ;
+                
+            }
+            
+            
+            
+            if(page == 1){
+                btn_prev.style.visibility = "hidden";
+                }else{
+                    btn_prev.style.visibility = "show";
+                }
+            if(page == numOfPages){
+                btn_next.style.visibility = "hidden";
+            }else{
+                btn_next.style.visibility = "show";
+            }
+            
+            
+        }
+        */
+        
+        for(i=0;i<=AccountDetails.length;i++){
+            for(key in AccountDetails[i]){
+                if(col.indexOf(key) === -1){
+                    col.push(key);
+                    
+                }
+                
+            }
+            
+        }
+        var table = document.createElement("table");
+
+        
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        for (var i = 0; i < AccountDetails.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = AccountDetails[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        var tableRow = table.rows.length;
+        console.log(tableRow);
+        
+        
+        var screenWidth = window.innerWidth;
+        console.log(screenWidth);
+        if(screenWidth > 400 ){
+            btn_prev.style.visibility = "show";
+            btn_next.style.visibility = "show";
+            }else{
+            btn_prev.style.visibility = "hidden";
+            btn_prev.style.visibility = "hidden";
+            
+        
+            
+        }
+    }
+</script>
+</html>
+    </body>
+</html>
+
+         
+   

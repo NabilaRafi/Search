@@ -1,0 +1,22 @@
+[
+            {
+                "Product": "Fixed Saver",
+                "Interest_Type": "2.20%",
+                "Minimum_Deposit": "500",
+                "Interest_Rate": "Fixed"
+            },
+            {
+                "Product": "Flex Saver",
+                "Interest_Type": "1.5%",
+                "Minimum_Deposit": "0",
+                "Interest_Rate": "Tracker"
+            },
+            {
+                "Product": "Offset Saver",
+                "Interest_Type": "0.8%",
+                "Minimum_Deposit": "1000",
+                "Interest_Rate": "Fixed"
+            }
+]
+
+
